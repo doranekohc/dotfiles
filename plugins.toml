@@ -1,0 +1,231 @@
+## -------------------------------------------------------------------
+## Dein.vim
+## -------------------------------------------------------------------
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+## -------------------------------------------------------------------
+## Unite
+## -------------------------------------------------------------------
+[[plugins]]
+repo = 'Shougo/unite.vim'
+hook_add = '''
+  " global keymap: スペースキーでunite起動
+  nnoremap [unite] <Nop>
+  nmap <Space> [unite]
+  nnoremap [unite]u :<C-u>Unite -no-split<Space>
+  nnoremap [unite]b :<C-u>Unite<Space>buffer<CR>
+  nnoremap [unite]f :<C-u>Unite<Space>file<CR>
+  nnoremap [unite]m :<C-u>Unite<Space>file_mru<CR>
+  nnoremap [unite]r :<C-u>UniteWithBufferDir file<CR>
+
+  " insert modeで開始
+  let g:unite_enable_start_insert = 1
+
+  " 大文字小文字を区別しない
+  let g:unite_enable_ignore_case = 1
+  let g:unite_enable_smart_case = 1
+
+  " grep検索
+  nnoremap <silent> [unite]/  :<C-u>Unite grep:. -buffer-name=search-buffer<CR>
+
+  " カーソル位置の単語をgrep検索
+  nnoremap <silent> [unite]* :<C-u>Unite grep:. -buffer-name=search-buffer<CR><C-R><C-W><CR>
+
+  " grep検索結果の再呼出
+  nnoremap <silent> [unite]r  :<C-u>UniteResume search-buffer<CR>
+
+  " unite grep に ag(The Silver Searcher) を使う
+  if executable('ag')
+    let g:unite_source_grep_command = 'ag'
+    let g:unite_source_grep_default_opts = '--nogroup --nocolor --column'
+    let g:unite_source_grep_recursive_opt = ''
+  endif
+
+  " 特定のディレクトリやファイルは除外
+  function! s:unite_gitignore_source()
+    let sources = []
+    call add(sources, 'files')
+    call add(sources, 'cscope.out')
+    if isdirectory('./.git')
+      call add(sources, '.git')
+    endif
+    let pattern = escape(join(sources, '|'), './|')
+    call unite#custom#source('file_rec', 'ignore_pattern', pattern)
+    call unite#custom#source('grep', 'ignore_pattern', pattern)
+  endfunction
+  call s:unite_gitignore_source()
+
+'''
+
+[[plugins]]
+repo = 'Shougo/neomru.vim'
+
+[[plugins]]
+repo = 'Shougo/vimproc.vim'
+hook_post_update = '''
+  " make設定
+  if executable('gmake')
+    let cmd = 'gmake'
+  else
+    let cmd = 'make'
+  endif
+  let g:dein#plugin.build = cmd
+'''
+
+## -------------------------------------------------------------------
+## Coding Helper
+## -------------------------------------------------------------------
+# end自動挿入 for Ruby
+[[plugins]]
+repo = 'tpope/vim-endwise'
+
+# [[plugins]]
+# # Rubyコード補完ツール どこかでちゃんと導入しようと思う
+# # http://d.hatena.ne.jp/osyo-manga/20140923/1411478836
+# repo = 'osyo-manga/monster-vim'
+
+#  NeoBundle 'mattn/emmet-vim'  "for html/css
+#    let g:user_emmet_leader_key = '<C-@>' "default:<C-y>
+#  "NeoBundle 'taglist.vim' "taglist for ctags を別windowに表示
+#  "NeoBundle 'Source-Explorer-srcexpl.vim' "ctags系plugin
+
+[[plugins]]
+repo = 'nathanaelkane/vim-indent-guides'
+hook_add = '''
+  let mapleader = ","
+  "let g:indent_guides_enable_on_vim_startup = 1
+'''
+
+[[plugins]]
+repo = 'Shougo/neocomplete.vim'
+
+[[plugins]]
+repo = 'fatih/vim-go'
+
+
+## -------------------------------------------------------------------
+## Syntax Highlight
+## -------------------------------------------------------------------
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'kchmck/vim-coffee-script'
+on_ft = 'coffee'
+
+[[plugins]]
+repo = 'digitaltoad/vim-jade'
+on_ft = 'jade'
+
+[[plugins]]
+repo = 'digitaltoad/vim-pug'
+on_ft = 'pug'
+
+[[plugins]]
+repo = 'leafgarland/typescript-vim'
+on_ft = 'typescript'
+
+[[plugins]]
+repo = 'slim-template/vim-slim'
+on_ft = 'slim'
+
+# vim-precious: カーソル位置のコンテキストに合わせてfiletypeを切り替える
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+depends = ['context_filetype.vim']
+
+# カーソル位置のコンテキストのfiletypeを判定するライブラリ
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+
+## -------------------------------------------------------------------
+## Cursor:
+## -------------------------------------------------------------------
+
+# vim multiple cursor
+[[plugins]]
+repo = 'terryma/vim-multiple-cursors' #http://qiita.com/sachin21/items/cfcb81bf4d1073429b68
+hook_add = '''
+  let g:multi_cursor_use_default_mapping=1 "default keymap
+  " let g:multi_cursor_next_key='<C-n>'
+  " let g:multi_cursor_prev_key='<C-p>'
+  " let g:multi_cursor_skip_key='<C-x>'
+  " let g:multi_cursor_quit_key='<Esc>'
+'''
+
+# Surround http://vimblog.hatenablog.com/entry/vim_plugin_surround_vim
+# visual選択 -> S" -> "で囲む
+[[plugins]]
+repo = 'tpope/vim-surround'
+
+## -------------------------------------------------------------------
+## Colorscheme
+## -------------------------------------------------------------------
+
+# LightLine ステータスラインリッチ化
+[[plugins]]
+repo = 'itchyny/lightline.vim'
+hook_add = '''
+  let g:lightline = {
+  \ 'colorscheme': 'wombat',
+  \ }
+'''
+
+# hybrid
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+#on_event = ['VimEnter']
+#hook_post_source = '''
+hook_add = '''
+  set background=dark
+  colorscheme hybrid
+'''
+
+# jellybeans
+[[plugins]]
+repo = 'nanotech/jellybeans.vim'
+
+
+## -------------------------------------------------------------------
+## Other Plugins
+## -------------------------------------------------------------------
+
+# Markdownプレビュー ,md
+[[plugins]]
+repo = 'kannokanno/previm'
+hook_add = '''
+  let g:previm_open_cmd = 'open -a Google\ Chrome'
+  nnoremap <silent> <Leader>md :<C-u>PrevimOpen<CR>
+  nnoremap <silent> <Leader>rr :call previm#refresh()<CR>
+'''
+
+# [[plugins]]
+# repo = 'itchyny/calendar.vim'
+# hook_add = '''
+#   nnoremap <Leader>cal :<c-u>Calendar<Enter>
+#   nnoremap <Leader>clk :<c-u>Calendar -view=clock<Enter>
+# '''
+
+# Tree Explorer
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+  " 起動ショートカット
+  "nnoremap <Leader>e <silent>:<C-u>NERDTreeToggle<CR>
+'''
+
+[[plugins]]
+repo = 'jistr/vim-nerdtree-tabs'
+hook_add = '''
+  nnoremap <Leader>e :NERDTreeToggle<CR>
+
+  nnoremap <Leader>t :tabe<CR>
+
+  " default tree view
+  let g:nerdtree_tabs_open_on_console_startup=0
+
+  " 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
+  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+'''

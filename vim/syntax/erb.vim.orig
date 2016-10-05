@@ -1,0 +1,16 @@
+" syntax setting for xxxx.scss.erb
+
+if exists("b:current_syntax")
+  finish
+endif
+
+"if ("b:current_syntax"!="scss")
+"  finish
+"endif
+
+runtime! syntax/eruby.vim
+
+syn region erbTag start=+<%=+ end=+%>+
+highlight link erbTag Identifier
+
+let b:current_syntax = "scss.erb"

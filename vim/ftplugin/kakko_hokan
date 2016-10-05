@@ -1,0 +1,1 @@
+inoremap {<Enter> {}<Left><CR><ESC><S-o>
