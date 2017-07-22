@@ -73,6 +73,7 @@ hook_post_update = '''
   let g:dein#plugin.build = cmd
 '''
 
+
 ## -------------------------------------------------------------------
 ## Coding Helper
 ## -------------------------------------------------------------------
@@ -89,6 +90,12 @@ repo = 'tpope/vim-endwise'
 #    let g:user_emmet_leader_key = '<C-@>' "default:<C-y>
 #  "NeoBundle 'taglist.vim' "taglist for ctags を別windowに表示
 #  "NeoBundle 'Source-Explorer-srcexpl.vim' "ctags系plugin
+
+[[plugins]]
+repo = 'mattn/emmet-vim'
+hook_add = '''
+  let g:user_emmet_leader_key = '<C-@>' "default:<C-y>
+'''
 
 [[plugins]]
 repo = 'nathanaelkane/vim-indent-guides'
@@ -140,6 +147,7 @@ depends = ['context_filetype.vim']
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
 
+
 ## -------------------------------------------------------------------
 ## Cursor:
 ## -------------------------------------------------------------------
@@ -159,6 +167,7 @@ hook_add = '''
 # visual選択 -> S" -> "で囲む
 [[plugins]]
 repo = 'tpope/vim-surround'
+
 
 ## -------------------------------------------------------------------
 ## Colorscheme
@@ -180,12 +189,19 @@ repo = 'w0ng/vim-hybrid'
 #hook_post_source = '''
 hook_add = '''
   set background=dark
-  colorscheme hybrid
+  "colorscheme hybrid
+  " 行番号の色変更
+  autocmd ColorScheme * highlight LineNr ctermfg=242 guifg=#999999
+  "autocmd ColorScheme * highlight ModeMsg ctermfg=255
+  autocmd ColorScheme * highlight CursorLineNr ctermfg=226
 '''
 
 # jellybeans
 [[plugins]]
 repo = 'nanotech/jellybeans.vim'
+hook_add = '''
+  colorscheme jellybeans
+'''
 
 
 ## -------------------------------------------------------------------
@@ -197,6 +213,7 @@ repo = 'nanotech/jellybeans.vim'
 repo = 'kannokanno/previm'
 hook_add = '''
   let g:previm_open_cmd = 'open -a Google\ Chrome'
+  let g:previm_custom_css_path = '/Users/yoshii/user_custom.css'
   nnoremap <silent> <Leader>md :<C-u>PrevimOpen<CR>
   nnoremap <silent> <Leader>rr :call previm#refresh()<CR>
 '''
@@ -216,16 +233,16 @@ hook_add = '''
   "nnoremap <Leader>e <silent>:<C-u>NERDTreeToggle<CR>
 '''
 
-[[plugins]]
-repo = 'jistr/vim-nerdtree-tabs'
-hook_add = '''
-  nnoremap <Leader>e :NERDTreeToggle<CR>
-
-  nnoremap <Leader>t :tabe<CR>
-
-  " default tree view
-  let g:nerdtree_tabs_open_on_console_startup=0
-
-  " 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
-  autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-'''
+# [[plugins]]
+# repo = 'jistr/vim-nerdtree-tabs'
+# hook_add = '''
+#   nnoremap <Leader>e :NERDTreeToggle<CR>
+#
+#   nnoremap <Leader>t :tabe<CR>
+#
+#   " default tree view
+#   let g:nerdtree_tabs_open_on_console_startup=0
+#
+#   " 他のバッファをすべて閉じた時にNERDTreeが開いていたらNERDTreeも一緒に閉じる。
+#   autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+# '''

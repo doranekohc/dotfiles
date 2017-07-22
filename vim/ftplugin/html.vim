@@ -1,2 +1,3 @@
-filetype indent on
 setf html
+filetype indent on
+set expandtab

@@ -209,14 +209,6 @@ autocmd filetype * setlocal formatoptions-=ro
 " Colorize Settings:
 "
 
-""" 行番号の色変更
-autocmd ColorScheme * highlight LineNr ctermfg=238 guifg=#999999
-"autocmd ColorScheme * highlight ModeMsg ctermfg=255
-autocmd ColorScheme * highlight CursorLineNr ctermfg=101
-
-"colorscheme jellybeans
-"colorscheme hybrid
-
 """ 行末の空白文字を可視化
 highlight WhitespaceEOL cterm=underline ctermbg=red guibg=#FF0000
 au BufWinEnter,WinEnter,VimEnter,BufRead * let w:m1 = matchadd("WhitespaceEOL", '\s\+$')
@@ -237,6 +229,7 @@ au BufWinEnter,WinEnter,VimEnter,BufRead * let w:m3 = matchadd("ZenkakuSpace", '
 "
 
 autocmd BufNewFile,BufRead *.xml setf xml
+autocmd BufNewFile,BufRead *.vue set filetype=html
 
 """ 最後に拡張子別設定を読み込む(途中で読み込むと以降の.vimrcが適用されない）
 filetype plugin on
@@ -258,3 +251,25 @@ endif
 nnoremap <C-]> :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
 
 let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
+
+
+" ====================================================================
+" Commentout Script: (書きかけ)
+"
+function CommentOut()
+  let l:line = getline('.')
+  let l:pos = getpos('.')
+
+  if line[0] == '/' && line[1] == '/'
+    exec ":normal 0xx" . "// "
+    if line[col('.')-1] == ' '
+      exec ":normal x"
+    endif
+  else
+    exec ":normal ^i" . "// "
+  endif
+
+  call setpos('.', pos)
+endfunction
+nnoremap <C-_> :<C-u>call CommentOut()<CR>
+
