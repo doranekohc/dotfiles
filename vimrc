@@ -76,6 +76,9 @@ if has("cscope")
   endif
   set csverb
   "set cscopequickfix=s-,c-,d-,i-,t-,e-
+  map <C-\> :cs find s <C-R>=expand("<cword>")<CR><CR>
+  map <C-]> :cs find g <C-R>=expand("<cword>")<CR><CR>
+  map <C-_> :cs find c <C-R>=expand("<cword>")<CR><CR> endif
 endif
 
 
@@ -137,6 +140,7 @@ nnoremap + ,
 " Netrw
 nnoremap <Leader>t :<C-u>Texplore<Return>
 nnoremap <Leader>v :<C-u>Vexplore<Esc><C-w>L
+nnoremap <Leader>h :<C-u>Hexplore<Return>
 " other
 nnoremap <Leader>cc :<C-u>set cursorcolumn<Return>
 nnoremap <Leader>ncc :<C-u>set nocursorcolumn<Return>
@@ -155,21 +159,21 @@ nnoremap <C-s> <Nop>
 "inoremap <C-e> <C-o>$
 "inoremap <C-a> <C-o>^
 " 入力しづらい文字のマッピング
-inoremap <C-f>' ''<Left>
-inoremap <C-f>" ""<Left>
-inoremap <C-t> ""<Left>
-inoremap <C-f>[ []<Left>
-inoremap <C-f>{ {}<Left>
-inoremap <C-f>8 ()<Left>
-inoremap <C-f>( ()<Left>
-inoremap <C-f>< <><Left>
-inoremap <C-f>l =
-inoremap <C-f>d $
-inoremap <C-f>s #
-inoremap <C-f>p %
-inoremap <C-f>a &
-inoremap <C-f>x !
-inoremap <C-f>b \
+"inoremap <C-f>' ''<Left>
+"inoremap <C-f>" ""<Left>
+"inoremap <C-t> ""<Left>
+"inoremap <C-f>[ []<Left>
+"inoremap <C-f>{ {}<Left>
+"inoremap <C-f>8 ()<Left>
+"inoremap <C-f>( ()<Left>
+"inoremap <C-f>< <><Left>
+"inoremap <C-f>l =
+"inoremap <C-f>d $
+"inoremap <C-f>s #
+"inoremap <C-f>p %
+"inoremap <C-f>a &
+"inoremap <C-f>x !
+"inoremap <C-f>b \
 
 "dark powered...
 inoremap jj <ESC>
@@ -256,20 +260,20 @@ let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
 " ====================================================================
 " Commentout Script: (書きかけ)
 "
-function CommentOut()
-  let l:line = getline('.')
-  let l:pos = getpos('.')
-
-  if line[0] == '/' && line[1] == '/'
-    exec ":normal 0xx" . "// "
-    if line[col('.')-1] == ' '
-      exec ":normal x"
-    endif
-  else
-    exec ":normal ^i" . "// "
-  endif
-
-  call setpos('.', pos)
-endfunction
-nnoremap <C-_> :<C-u>call CommentOut()<CR>
+"function CommentOut()
+"  let l:line = getline('.')
+"  let l:pos = getpos('.')
+"
+"  if line[0] == '/' && line[1] == '/'
+"    exec ":normal 0xx" . "// "
+"    if line[col('.')-1] == ' '
+"      exec ":normal x"
+"    endif
+"  else
+"    exec ":normal ^i" . "// "
+"  endif
+"
+"  call setpos('.', pos)
+"endfunction
+"nnoremap <C-_> :<C-u>call CommentOut()<CR>
 

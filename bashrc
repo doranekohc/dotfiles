@@ -61,10 +61,16 @@ alias vag='vagrant'
 alias vis="vim -S ~/Session.vim"
 
 # alias for app
-alias mvim='open -a MacVim'
+#alias mvim='open -a MacVim'
 
 # alias for git
 alias gimdiff='git difftool --tool=vimdiff --no-prompt'
+alias gimdiffm='git difftool --tool=mvimdiff --no-prompt'
+alias mgimdiff='git difftool --tool=mvimdiff --no-prompt'
+
+# alias for Docker
+alias dockerm='docker-machine'
+alias dockerc='docker-compose'
 
 
 ##
@@ -96,14 +102,17 @@ alias tmux="TERM=screen-256color-bce tmux"
 export XDG_CONFIG_HOME=$HOME/.config
 export TERM="xterm-256color"
 
+# MacVim
+export PATH=${PATH}:/Applications/MacVim.app/Contents/MacOS
+
 # direnv
 export EDITOR=vim
 eval "$(direnv hook bash)"
 
-# for go-lang
+# for golang
 export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/go"
-export PATH="${GOPATH}/bin":${PATH}
+export PATH="${PATH}:${GOPATH}/bin"
 
 # Google Cloud Platform
 ## The next line updates PATH for the Google Cloud SDK.

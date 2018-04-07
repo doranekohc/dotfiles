@@ -73,6 +73,9 @@ hook_post_update = '''
   let g:dein#plugin.build = cmd
 '''
 
+# VimFiler
+[[plugins]]
+repo = 'Shougo/vimfiler'
 
 ## -------------------------------------------------------------------
 ## Coding Helper
@@ -109,6 +112,13 @@ repo = 'Shougo/neocomplete.vim'
 
 [[plugins]]
 repo = 'fatih/vim-go'
+
+# gitのdiffがある行に印
+[[plugins]]
+repo = 'airblade/vim-gitgutter'
+hook_add = '''
+  nnoremap ,gg :<C-u>GitGutterLineHighlightsToggle<CR>
+'''
 
 
 ## -------------------------------------------------------------------
@@ -232,6 +242,9 @@ hook_add = '''
   " 起動ショートカット
   "nnoremap <Leader>e <silent>:<C-u>NERDTreeToggle<CR>
 '''
+
+[[plugins]]
+repo = 'vim-scripts/diffchar.vim'
 
 # [[plugins]]
 # repo = 'jistr/vim-nerdtree-tabs'
