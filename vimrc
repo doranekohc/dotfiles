@@ -10,7 +10,7 @@ set encoding=utf-8
 
 " ====================================================================
 " Dein Setting:
-"
+" ====================================================================
 if &compatible
   set nocompatible
 endif
@@ -57,6 +57,7 @@ endif
 " ====================================================================
 " Ctags And Cscope Setting:
 " 全然見直してないので使うときは確認
+" ====================================================================
 "
 let Tlist_Ctags_Cmd='/usr/local/bin/ctags'
 let g:SrcExpl_updateTagsCmd = "/usr/local/bin/ctags --sort=foldcase -R ."
@@ -84,6 +85,7 @@ endif
 
 " ====================================================================
 " NeoVim Settings:
+" ====================================================================
 "
 if has('nvim')
   let $NVIM_TUI_ENABLE_TRUE_COLOR=1
@@ -91,9 +93,9 @@ if has('nvim')
 endif
 
 
-
 " ====================================================================
 " General Settings:
+" ====================================================================
 "   (...拡張子別の設定は ~/.vim/ftplugin/拡張子.vim に書きましょう)
 "
 syntax enable
@@ -117,7 +119,7 @@ let g:netrw_liststyle = 3
 
 " ====================================================================
 " Keymap:
-"   (プラグイン毎のマッピングはNeoBundle項で)
+" ====================================================================
 " ----------------------------------------------
 " Normal Mode:
 " ----------------------------------------------
@@ -153,29 +155,8 @@ nnoremap <C-z> <Nop>
 nnoremap <C-s> <Nop>
 
 " ----------------------------------------------
-""" Insert Mode:
+" Insert Mode:
 " ----------------------------------------------
-" <c-o>: 一旦NormalModeになってcommand1つ実行、再度InsertModeに
-"inoremap <C-e> <C-o>$
-"inoremap <C-a> <C-o>^
-" 入力しづらい文字のマッピング
-"inoremap <C-f>' ''<Left>
-"inoremap <C-f>" ""<Left>
-"inoremap <C-t> ""<Left>
-"inoremap <C-f>[ []<Left>
-"inoremap <C-f>{ {}<Left>
-"inoremap <C-f>8 ()<Left>
-"inoremap <C-f>( ()<Left>
-"inoremap <C-f>< <><Left>
-"inoremap <C-f>l =
-"inoremap <C-f>d $
-"inoremap <C-f>s #
-"inoremap <C-f>p %
-"inoremap <C-f>a &
-"inoremap <C-f>x !
-"inoremap <C-f>b \
-
-"dark powered...
 inoremap jj <ESC>
 
 " ----------------------------------------------
@@ -189,19 +170,16 @@ vnoremap <C-k> 10k
 vnoremap iq i"
 
 " ----------------------------------------------
-""" Command Mode:
+" Command Mode:
 " ----------------------------------------------
 cnoremap bv bel vnew
 cnoremap nocc nocursorcolumn
 cnoremap vimrc source ~/.vimrc
 
-" コメント行でoすると次の行もコメントになるのを防止(うまくいかない)
-autocmd filetype * setlocal formatoptions-=ro
-
 
 " ====================================================================
 " Command Alias:
-"
+" ====================================================================
 " VimShowHlGroup: Show highlight group name under a cursor
  command! VimShowHlGroup echo synIDattr(synIDtrans(synID(line('.'), col('.'), 1)), 'name')
 
@@ -211,7 +189,7 @@ autocmd filetype * setlocal formatoptions-=ro
 
 " ====================================================================
 " Colorize Settings:
-"
+" ====================================================================
 
 """ 行末の空白文字を可視化
 highlight WhitespaceEOL cterm=underline ctermbg=red guibg=#FF0000
@@ -230,7 +208,7 @@ au BufWinEnter,WinEnter,VimEnter,BufRead * let w:m3 = matchadd("ZenkakuSpace", '
 
 " ====================================================================
 " Other Settings:
-"
+" ====================================================================
 
 autocmd BufNewFile,BufRead *.xml setf xml
 autocmd BufNewFile,BufRead *.vue set filetype=html
@@ -255,25 +233,4 @@ endif
 nnoremap <C-]> :<C-u>tab stj <C-R>=expand('<cword>')<CR><CR>
 
 let g:rsenseHome = "/usr/local/Cellar/rsense/0.3/libexec"
-
-
-" ====================================================================
-" Commentout Script: (書きかけ)
-"
-"function CommentOut()
-"  let l:line = getline('.')
-"  let l:pos = getpos('.')
-"
-"  if line[0] == '/' && line[1] == '/'
-"    exec ":normal 0xx" . "// "
-"    if line[col('.')-1] == ' '
-"      exec ":normal x"
-"    endif
-"  else
-"    exec ":normal ^i" . "// "
-"  endif
-"
-"  call setpos('.', pos)
-"endfunction
-"nnoremap <C-_> :<C-u>call CommentOut()<CR>
 

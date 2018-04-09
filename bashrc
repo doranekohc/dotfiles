@@ -1,10 +1,6 @@
 ##################################################
-# .bashrc : script for bash settings             #
-##################################################
-
-##
 ## Prompt
-##
+##################################################
 
 # git-prompt
 if [ -e /Library/Developer/CommandLineTools/usr/share/git-core/git-prompt.sh ]; then
@@ -25,9 +21,9 @@ else
 fi
 
 
-##
+##################################################
 ## Completion
-##
+##################################################
 
 # bash
 if [ -e /usr/local/Cellar/bash-completion/1.3/etc/bash_completion ]; then
@@ -46,9 +42,9 @@ else
 fi
 
 
-##
+##################################################
 ## alias
-##
+##################################################
 
 alias ls='ls -FG'  #G=colorize
 alias ll='ls -la'
@@ -73,9 +69,9 @@ alias dockerm='docker-machine'
 alias dockerc='docker-compose'
 
 
-##
+##################################################
 ## Other
-##
+##################################################
 
 # PATH
 export PATH=$HOME/.cabal/bin:/usr/local/bin:/usr/local/Cellar:/usr/local/development/bin:$PATH
@@ -87,10 +83,6 @@ stty stop undef
 
 # 連続して実行された同じコマンドをhistoryに残さない
 export HISTCONTROL=ignoreboth
-
-# Elastic Beanstalk
-export PATH=/usr/local/aws/eb/macosx/python2.7/:$PATH
-export AWS_CREDENTIAL_FILE="~/.elasticbeanstalk/aws_credential_file"
 
 # rbenv
 export PATH=~/.rbenv/shims:$PATH
@@ -114,6 +106,21 @@ export GOROOT=`go env GOROOT`
 export GOPATH="${HOME}/go"
 export PATH="${PATH}:${GOPATH}/bin"
 
+# gitignore generator
+function gi() { curl https://www.gitignore.io/api/${@} ;}
+
+# node関連
+export PATH=${PATH}:./node_modules/.bin
+
+
+##################################################
+## Cloud Settings
+##################################################
+
+# Elastic Beanstalk
+export PATH=/usr/local/aws/eb/macosx/python2.7/:$PATH
+export AWS_CREDENTIAL_FILE="~/.elasticbeanstalk/aws_credential_file"
+
 # Google Cloud Platform
 ## The next line updates PATH for the Google Cloud SDK.
 source '/usr/local/google-cloud-sdk/path.bash.inc' # auto-add
@@ -121,8 +128,3 @@ source '/usr/local/google-cloud-sdk/path.bash.inc' # auto-add
 source '/usr/local/google-cloud-sdk/completion.bash.inc' # auto-add
 export PATH=/usr/local/go_appengine:${PATH}
 
-# gitignore generator
-function gi() { curl https://www.gitignore.io/api/${@} ;}
-
-# node関連
-export PATH=${PATH}:./node_modules/.bin
