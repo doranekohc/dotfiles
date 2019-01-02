@@ -57,7 +57,7 @@ alias vag='vagrant'
 alias vis="vim -S ~/Session.vim"
 
 # alias for app
-#alias mvim='open -a MacVim'
+alias mvim='open -a MacVim'
 
 # alias for git
 alias gimdiff='git difftool --tool=vimdiff --no-prompt'
@@ -110,8 +110,10 @@ export PATH="${PATH}:${GOPATH}/bin"
 function gi() { curl https://www.gitignore.io/api/${@} ;}
 
 # node関連
-export PATH=${PATH}:./node_modules/.bin
+export PATH=${HOME}/.nodebrew/current/bin:${PATH}:./node_modules/.bin
 
+# elasticsearch (high priority)
+export PATH=/usr/local/opt/elasticsearch@5.6/bin:${PATH}
 
 ##################################################
 ## Cloud Settings
@@ -128,3 +130,16 @@ source '/usr/local/google-cloud-sdk/path.bash.inc' # auto-add
 source '/usr/local/google-cloud-sdk/completion.bash.inc' # auto-add
 export PATH=/usr/local/go_appengine:${PATH}
 
+
+# tabtab source for serverless package
+# uninstall by removing these lines or running `tabtab uninstall serverless`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/serverless.bash
+# tabtab source for sls package
+# uninstall by removing these lines or running `tabtab uninstall sls`
+[ -f /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash ] && . /usr/local/lib/node_modules/serverless/node_modules/tabtab/.completions/sls.bash
+
+# android debug
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
