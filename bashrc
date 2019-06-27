@@ -86,6 +86,7 @@ export HISTCONTROL=ignoreboth
 
 # rbenv
 export PATH=~/.rbenv/shims:$PATH
+eval "$(rbenv init -)"
 
 # tmux
 alias tmux="TERM=screen-256color-bce tmux"
