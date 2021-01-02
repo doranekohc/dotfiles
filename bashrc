@@ -26,8 +26,8 @@ fi
 ##################################################
 
 # bash
-if [ -e /usr/local/Cellar/bash-completion/1.3/etc/bash_completion ]; then
-  . /usr/local/Cellar/bash-completion/1.3/etc/bash_completion
+if [ -e /usr/local/Cellar/bash-completion/*/etc/bash_completion ]; then
+  . /usr/local/Cellar/bash-completion/*/etc/bash_completion
 else
   echo "bash_completion is not found."
 fi
@@ -144,3 +144,6 @@ export ANDROID_HOME=$HOME/Library/Android/sdk
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/tools/bin
 export PATH=$PATH:$ANDROID_HOME/platform-tools
+
+# pyenv
+export PATH=$HOME/.pyenv/shims:$PATH

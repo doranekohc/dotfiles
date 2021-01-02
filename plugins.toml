@@ -117,6 +117,19 @@ hook_add = '''
   nnoremap ,gg :<C-u>GitGutterLineHighlightsToggle<CR>
 '''
 
+  # \  "debug_file_level" : 2,
+[[plugins]]
+repo = 'joonty/vdebug'
+hook_add = '''
+  let g:vdebug_options = {
+  \  "port" : 9000,
+  \  "debug_file" : '~/.vim/vdebug.log',
+  \  "ide_key" : 'docker',
+  \  "path_maps" : {
+  \    '/var/www' : '/Users/yoshii/work/kawase/ebs/src',
+  \  }
+  \}
+'''
 
 ## -------------------------------------------------------------------
 ## Syntax Highlight
@@ -145,6 +158,10 @@ on_ft = 'typescript'
 repo = 'slim-template/vim-slim'
 on_ft = 'slim'
 
+[[plugins]]
+repo = 'kylef/apiblueprint.vim'
+on_ft = 'apiblueprint'
+
 # vim-precious: カーソル位置のコンテキストに合わせてfiletypeを切り替える
 [[plugins]]
 repo = 'osyo-manga/vim-precious'
@@ -153,6 +170,10 @@ depends = ['context_filetype.vim']
 # カーソル位置のコンテキストのfiletypeを判定するライブラリ
 [[plugins]]
 repo = 'Shougo/context_filetype.vim'
+
+[[plugins]]
+repo = 'udalov/kotlin-vim'
+on_ft = 'kt'
 
 
 ## -------------------------------------------------------------------
